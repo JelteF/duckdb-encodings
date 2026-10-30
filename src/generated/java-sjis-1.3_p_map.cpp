@@ -1,10 +1,10 @@
-#include "generated/java-sjis-1.3_p_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: java-SJIS-1.3_P.ucm
-static const map_entry_encoding java_SJIS_1_3_P_to_utf8[] = {
+extern const map_entry_encoding java_SJIS_1_3_P_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -7076,12 +7076,5 @@ static const map_entry_encoding java_SJIS_1_3_P_to_utf8[] = {
     {2, "\xEA\xA3", 3, "\xE5\x87\x9C"},
     {2, "\xEA\xA4", 3, "\xE7\x86\x99"},
 };
-void Java_sjis_1_3_pToUtf::Register(const DBConfig &config) {
-	const Java_sjis_1_3_pToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                java_SJIS_1_3_P_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

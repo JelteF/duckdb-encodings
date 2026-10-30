@@ -1,10 +1,10 @@
-#include "generated/ascii_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-646-2.7.ucm
-static const map_entry_encoding ascii_to_utf8[] = {
+extern const map_entry_encoding ascii_to_utf8[] = {
     {1, "\x00", 1, "\x00"}, {1, "\x01", 1, "\x01"}, {1, "\x02", 1, "\x02"}, {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"}, {1, "\x05", 1, "\x05"}, {1, "\x06", 1, "\x06"}, {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"}, {1, "\x09", 1, "\x09"}, {1, "\x0A", 1, "\x0A"}, {1, "\x0B", 1, "\x0B"},
@@ -38,39 +38,5 @@ static const map_entry_encoding ascii_to_utf8[] = {
     {1, "\x78", 1, "\x78"}, {1, "\x79", 1, "\x79"}, {1, "\x7A", 1, "\x7A"}, {1, "\x7B", 1, "\x7B"},
     {1, "\x7C", 1, "\x7C"}, {1, "\x7D", 1, "\x7D"}, {1, "\x7E", 1, "\x7E"}, {1, "\x7F", 1, "\x7F"},
 };
-
-// Aliases of "ascii": the names Python accepts for its codec "ascii"
-static const char *const ascii_aliases[] = {"646",
-                                            "ansi-x3-4-1968",
-                                            "ansi-x3.4-1968",
-                                            "ansi-x3.4-1986",
-                                            "ansi_x3.4_1968",
-                                            "ansi_x3.4_1986",
-                                            "ansi_x3_4_1968",
-                                            "cp367",
-                                            "csascii",
-                                            "ibm367",
-                                            "iso-646.irv-1991",
-                                            "iso-ir-6",
-                                            "iso646-us",
-                                            "iso_646.irv_1991",
-                                            "iso_ir_6",
-                                            "us",
-                                            "us-ascii",
-                                            "us_ascii"};
-
-void AsciiToUtf::Register(const DBConfig &config) {
-	const AsciiToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ascii_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : ascii_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      ascii_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -1,10 +1,10 @@
-#include "generated/windows-950_hkscs-2001_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: windows-950_hkscs-2001.ucm
-static const map_entry_encoding windows_950_hkscs_2001_to_utf8[] = {
+extern const map_entry_encoding windows_950_hkscs_2001_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -19856,12 +19856,5 @@ static const map_entry_encoding windows_950_hkscs_2001_to_utf8[] = {
     {2, "\xFE\xFE", 3, "\xE7\xA7\x94"},
     {1, "\xFF", 3, "\xEF\xA3\xB8"},
 };
-void Windows_950_hkscs_2001ToUtf::Register(const DBConfig &config) {
-	const Windows_950_hkscs_2001ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                windows_950_hkscs_2001_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

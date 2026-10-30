@@ -1,10 +1,10 @@
-#include "generated/ibm-1370_p100-1999_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-1370_P100-1999.ucm
-static const map_entry_encoding ibm_1370_P100_1999_to_utf8[] = {
+extern const map_entry_encoding ibm_1370_P100_1999_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -20400,12 +20400,5 @@ static const map_entry_encoding ibm_1370_P100_1999_to_utf8[] = {
     {2, "\xFE\xFD", 3, "\xEE\x8C\x8F"},
     {2, "\xFE\xFE", 3, "\xEE\x8C\x90"},
 };
-void Ibm_1370_p100_1999ToUtf::Register(const DBConfig &config) {
-	const Ibm_1370_p100_1999ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_1370_P100_1999_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

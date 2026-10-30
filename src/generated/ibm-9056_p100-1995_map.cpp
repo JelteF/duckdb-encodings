@@ -1,10 +1,10 @@
-#include "generated/ibm-9056_p100-1995_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-9056_P100-1995.ucm
-static const map_entry_encoding ibm_9056_P100_1995_to_utf8[] = {
+extern const map_entry_encoding ibm_9056_P100_1995_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -53,12 +53,5 @@ static const map_entry_encoding ibm_9056_P100_1995_to_utf8[] = {
     {1, "\xE5", 2, "\xD9\x85"}, {1, "\xE6", 2, "\xD9\x86"}, {1, "\xE7", 2, "\xD9\x87"}, {1, "\xE8", 2, "\xD9\x88"},
     {1, "\xE9", 2, "\xD9\x89"}, {1, "\xEA", 2, "\xD9\x8A"}, {1, "\xF1", 2, "\xD9\x91"},
 };
-void Ibm_9056_p100_1995ToUtf::Register(const DBConfig &config) {
-	const Ibm_9056_p100_1995ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_9056_P100_1995_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

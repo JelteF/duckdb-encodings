@@ -1,10 +1,10 @@
-#include "generated/ibm_euckr_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-IBM_eucKR-4.3.6.ucm
-static const map_entry_encoding IBM_eucKR_to_utf8[] = {
+extern const map_entry_encoding IBM_eucKR_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -8576,12 +8576,5 @@ static const map_entry_encoding IBM_eucKR_to_utf8[] = {
     {2, "\xFE\xFD", 3, "\xEE\x82\xBA"},
     {2, "\xFE\xFE", 3, "\xEE\x82\xBB"},
 };
-void Ibm_euckrToUtf::Register(const DBConfig &config) {
-	const Ibm_euckrToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                IBM_eucKR_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

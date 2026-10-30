@@ -1,10 +1,10 @@
-#include "generated/iso-8859_11-2001_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: iso-8859_11-2001.ucm
-static const map_entry_encoding iso_8859_11_2001_to_utf8[] = {
+extern const map_entry_encoding iso_8859_11_2001_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -89,23 +89,5 @@ static const map_entry_encoding iso_8859_11_2001_to_utf8[] = {
     {1, "\xF7", 3, "\xE0\xB9\x97"}, {1, "\xF8", 3, "\xE0\xB9\x98"}, {1, "\xF9", 3, "\xE0\xB9\x99"},
     {1, "\xFA", 3, "\xE0\xB9\x9A"}, {1, "\xFB", 3, "\xE0\xB9\x9B"},
 };
-
-// Aliases of "iso-8859_11-2001": the names Python accepts for its codec "iso8859_11"
-static const char *const iso_8859_11_2001_aliases[] = {"iso-8859-11", "iso-8859-11-2001", "iso8859-11",
-                                                       "iso8859_11",  "iso_8859_11_2001", "thai"};
-
-void Iso_8859_11_2001ToUtf::Register(const DBConfig &config) {
-	const Iso_8859_11_2001ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                iso_8859_11_2001_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : iso_8859_11_2001_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      iso_8859_11_2001_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

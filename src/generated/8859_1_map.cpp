@@ -1,10 +1,10 @@
-#include "generated/8859_1_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-8859_1-2.7.ucm
-static const map_entry_encoding _8859_1_to_utf8[] = {
+extern const map_entry_encoding _8859_1_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -70,12 +70,5 @@ static const map_entry_encoding _8859_1_to_utf8[] = {
     {1, "\xF8", 2, "\xC3\xB8"}, {1, "\xF9", 2, "\xC3\xB9"}, {1, "\xFA", 2, "\xC3\xBA"}, {1, "\xFB", 2, "\xC3\xBB"},
     {1, "\xFC", 2, "\xC3\xBC"}, {1, "\xFD", 2, "\xC3\xBD"}, {1, "\xFE", 2, "\xC3\xBE"}, {1, "\xFF", 2, "\xC3\xBF"},
 };
-void _8859_1ToUtf::Register(const DBConfig &config) {
-	const _8859_1ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                _8859_1_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -1,10 +1,10 @@
-#include "generated/cp424_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-IBM424-2.1.2.ucm
-static const map_entry_encoding cp424_to_utf8[] = {
+extern const map_entry_encoding cp424_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 2, "\xC2\x9C"}, {1, "\x05", 1, "\x09"},
     {1, "\x06", 2, "\xC2\x86"},     {1, "\x07", 1, "\x7F"},     {1, "\x08", 2, "\xC2\x97"},
@@ -79,22 +79,5 @@ static const map_entry_encoding cp424_to_utf8[] = {
     {1, "\xF8", 1, "\x38"},         {1, "\xF9", 1, "\x39"},     {1, "\xFA", 2, "\xC2\xB3"},
     {1, "\xFF", 2, "\xC2\x9F"},
 };
-
-// Aliases of "cp424": the names Python accepts for its codec "cp424"
-static const char *const cp424_aliases[] = {"424", "csibm424", "ebcdic-cp-he", "ebcdic_cp_he", "ibm424"};
-
-void Cp424ToUtf::Register(const DBConfig &config) {
-	const Cp424ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                cp424_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : cp424_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      cp424_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

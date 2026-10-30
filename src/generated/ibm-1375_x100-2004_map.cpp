@@ -1,10 +1,10 @@
-#include "generated/ibm-1375_x100-2004_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-1375_X100-2004.ucm
-static const map_entry_encoding ibm_1375_X100_2004_to_utf8[] = {
+extern const map_entry_encoding ibm_1375_X100_2004_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -16728,12 +16728,5 @@ static const map_entry_encoding ibm_1375_X100_2004_to_utf8[] = {
     {2, "\xFE\xFC", 3, "\xE7\xA7\x86"},
     {2, "\xFE\xFE", 3, "\xE7\xA7\x94"},
 };
-void Ibm_1375_x100_2004ToUtf::Register(const DBConfig &config) {
-	const Ibm_1375_x100_2004ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_1375_X100_2004_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

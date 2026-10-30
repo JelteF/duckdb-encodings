@@ -1,10 +1,10 @@
-#include "generated/cp1253_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-CP1253-2.1.2.ucm
-static const map_entry_encoding CP1253_to_utf8[] = {
+extern const map_entry_encoding CP1253_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -86,22 +86,5 @@ static const map_entry_encoding CP1253_to_utf8[] = {
     {1, "\xFA", 2, "\xCF\x8A"},     {1, "\xFB", 2, "\xCF\x8B"},     {1, "\xFC", 2, "\xCF\x8C"},
     {1, "\xFD", 2, "\xCF\x8D"},     {1, "\xFE", 2, "\xCF\x8E"},
 };
-
-// Aliases of "CP1253": the names Python accepts for its codec "cp1253"
-static const char *const CP1253_aliases[] = {"1253", "windows-1253", "windows_1253"};
-
-void Cp1253ToUtf::Register(const DBConfig &config) {
-	const Cp1253ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                CP1253_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : CP1253_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      CP1253_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

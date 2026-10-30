@@ -1,10 +1,10 @@
-#include "generated/glibc-big5-2.3.3_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-BIG5-2.3.3.ucm
-static const map_entry_encoding glibc_BIG5_2_3_3_to_utf8[] = {
+extern const map_entry_encoding glibc_BIG5_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -14046,12 +14046,5 @@ static const map_entry_encoding glibc_BIG5_2_3_3_to_utf8[] = {
     {2, "\xF9\xFD", 3, "\xE2\x95\xAF"},
     {2, "\xF9\xFE", 3, "\xE2\x96\x93"},
 };
-void Glibc_big5_2_3_3ToUtf::Register(const DBConfig &config) {
-	const Glibc_big5_2_3_3ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                glibc_BIG5_2_3_3_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

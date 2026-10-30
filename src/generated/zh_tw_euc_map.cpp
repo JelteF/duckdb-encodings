@@ -1,10 +1,10 @@
-#include "generated/zh_tw_euc_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: solaris-zh_TW_euc-2.7.ucm
-static const map_entry_encoding zh_TW_euc_to_utf8[] = {
+extern const map_entry_encoding zh_TW_euc_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -17845,12 +17845,5 @@ static const map_entry_encoding zh_TW_euc_to_utf8[] = {
     {2, "\xFD\xCA", 3, "\xE9\xB8\x9E"},
     {2, "\xFD\xCB", 3, "\xE7\xB1\xB2"},
 };
-void Zh_tw_eucToUtf::Register(const DBConfig &config) {
-	const Zh_tw_eucToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                zh_TW_euc_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

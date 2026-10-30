@@ -1,10 +1,10 @@
-#include "generated/ibm-953_p100-2000_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-953_P100-2000.ucm
-static const map_entry_encoding ibm_953_P100_2000_to_utf8[] = {
+extern const map_entry_encoding ibm_953_P100_2000_to_utf8[] = {
     {2, "\xA2\xAF", 2, "\xCB\x98"},     {2, "\xA2\xB0", 2, "\xCB\x87"},     {2, "\xA2\xB1", 2, "\xC2\xB8"},
     {2, "\xA2\xB2", 2, "\xCB\x99"},     {2, "\xA2\xB3", 2, "\xCB\x9D"},     {2, "\xA2\xB4", 2, "\xC2\xAF"},
     {2, "\xA2\xB5", 2, "\xCB\x9B"},     {2, "\xA2\xB6", 2, "\xCB\x9A"},     {2, "\xA2\xB7", 3, "\xEE\xA7\xB4"},
@@ -2377,12 +2377,5 @@ static const map_entry_encoding ibm_953_P100_2000_to_utf8[] = {
     {2, "\xFE\xF9", 3, "\xEE\x9D\x92"}, {2, "\xFE\xFA", 3, "\xEE\x9D\x93"}, {2, "\xFE\xFB", 3, "\xEE\x9D\x94"},
     {2, "\xFE\xFC", 3, "\xEE\x9D\x95"}, {2, "\xFE\xFD", 3, "\xEE\x9D\x96"}, {2, "\xFE\xFE", 3, "\xEE\x9D\x97"},
 };
-void Ibm_953_p100_2000ToUtf::Register(const DBConfig &config) {
-	const Ibm_953_p100_2000ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_953_P100_2000_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb
