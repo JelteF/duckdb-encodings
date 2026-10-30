@@ -1,10 +1,10 @@
-#include "generated/macos-6_2-10.4_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: macos-6_2-10.4.ucm
-static const map_entry_encoding macos_6_2_10_4_to_utf8[] = {
+extern const map_entry_encoding macos_6_2_10_4_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -92,12 +92,5 @@ static const map_entry_encoding macos_6_2_10_4_to_utf8[] = {
     {1, "\xFC", 2, "\xCF\x8B"},     {1, "\xFD", 2, "\xCE\x90"},     {1, "\xFE", 2, "\xCE\xB0"},
     {1, "\xFF", 2, "\xC2\xAD"},
 };
-void Macos_6_2_10_4ToUtf::Register(const DBConfig &config) {
-	const Macos_6_2_10_4ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                macos_6_2_10_4_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

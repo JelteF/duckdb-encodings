@@ -11,6 +11,7 @@ include_directories(src/include)
 
 set(EXTENSION_SOURCES src/encodings_extension.cpp
     src/generated_encoded_functions.cpp
+    src/generated/registration.cpp
     src/generated/ibm-1285_p100-1996_map.cpp
     src/generated/cp852_map.cpp
     src/generated/ibm-62383_p100-2007_map.cpp

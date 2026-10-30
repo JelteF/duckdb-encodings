@@ -1,10 +1,10 @@
-#include "generated/ibm-5039_p110-1996_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-5039_P110-1996.ucm
-static const map_entry_encoding ibm_5039_P110_1996_to_utf8[] = {
+extern const map_entry_encoding ibm_5039_P110_1996_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -8021,12 +8021,5 @@ static const map_entry_encoding ibm_5039_P110_1996_to_utf8[] = {
     {1, "\xFE", 1, "\x5C"},
     {1, "\xFF", 1, "\x7E"},
 };
-void Ibm_5039_p110_1996ToUtf::Register(const DBConfig &config) {
-	const Ibm_5039_p110_1996ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_5039_P110_1996_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

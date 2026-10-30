@@ -1,10 +1,10 @@
-#include "generated/mac_roman_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-MACINTOSH-2.1.2.ucm
-static const map_entry_encoding mac_roman_to_utf8[] = {
+extern const map_entry_encoding mac_roman_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -91,22 +91,5 @@ static const map_entry_encoding mac_roman_to_utf8[] = {
     {1, "\xFB", 2, "\xCB\x9A"},     {1, "\xFC", 2, "\xC2\xB8"},     {1, "\xFD", 2, "\xCB\x9D"},
     {1, "\xFE", 2, "\xCB\x9B"},     {1, "\xFF", 2, "\xCB\x87"},
 };
-
-// Aliases of "mac_roman": the names Python accepts for its codec "mac_roman"
-static const char *const mac_roman_aliases[] = {"mac-roman", "macintosh", "macroman"};
-
-void Mac_romanToUtf::Register(const DBConfig &config) {
-	const Mac_romanToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                mac_roman_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : mac_roman_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      mac_roman_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

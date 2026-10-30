@@ -1,10 +1,10 @@
-#include "generated/greek_ccitt_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-GREEK_CCITT-2.1.2.ucm
-static const map_entry_encoding GREEK_CCITT_to_utf8[] = {
+extern const map_entry_encoding GREEK_CCITT_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},     {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},     {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},     {1, "\x0B", 1, "\x0B"},
@@ -37,12 +37,5 @@ static const map_entry_encoding GREEK_CCITT_to_utf8[] = {
     {1, "\x77", 2, "\xCF\x87"}, {1, "\x78", 2, "\xCF\x88"}, {1, "\x79", 2, "\xCF\x89"}, {1, "\x7B", 1, "\x7B"},
     {1, "\x7C", 1, "\x7C"},     {1, "\x7D", 1, "\x7D"},     {1, "\x7E", 2, "\xC2\xAF"}, {1, "\x7F", 1, "\x7F"},
 };
-void Greek_ccittToUtf::Register(const DBConfig &config) {
-	const Greek_ccittToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                GREEK_CCITT_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

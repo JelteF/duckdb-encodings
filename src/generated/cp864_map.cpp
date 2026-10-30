@@ -1,10 +1,10 @@
-#include "generated/cp864_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-IBM864-2.1.2.ucm
-static const map_entry_encoding cp864_to_utf8[] = {
+extern const map_entry_encoding cp864_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},         {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 1, "\x04"},         {1, "\x05", 1, "\x05"},
     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},         {1, "\x08", 1, "\x08"},
@@ -88,22 +88,5 @@ static const map_entry_encoding cp864_to_utf8[] = {
     {1, "\xFB", 3, "\xEF\xBB\x9D"}, {1, "\xFC", 3, "\xEF\xBB\x99"}, {1, "\xFD", 3, "\xEF\xBB\xB1"},
     {1, "\xFE", 3, "\xE2\x96\xA0"},
 };
-
-// Aliases of "cp864": the names Python accepts for its codec "cp864"
-static const char *const cp864_aliases[] = {"864", "csibm864", "ibm864"};
-
-void Cp864ToUtf::Register(const DBConfig &config) {
-	const Cp864ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                cp864_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : cp864_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      cp864_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

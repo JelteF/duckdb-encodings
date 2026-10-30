@@ -1,10 +1,10 @@
-#include "generated/hpux-greee-11.11_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: hpux-greee-11.11.ucm
-static const map_entry_encoding hpux_greee_11_11_to_utf8[] = {
+extern const map_entry_encoding hpux_greee_11_11_to_utf8[] = {
     {1, "\x00", 1, "\x00"},         {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},
     {1, "\x03", 1, "\x03"},         {1, "\x04", 2, "\xC2\x80"}, {1, "\x05", 1, "\x09"},
     {1, "\x06", 2, "\xC2\x81"},     {1, "\x07", 2, "\xC2\x9F"}, {1, "\x08", 2, "\xC2\x82"},
@@ -90,12 +90,5 @@ static const map_entry_encoding hpux_greee_11_11_to_utf8[] = {
     {1, "\xFA", 2, "\xC2\xB3"},     {1, "\xFB", 2, "\xC2\xA9"}, {1, "\xFC", 3, "\xE2\x82\xAC"},
     {1, "\xFE", 2, "\xC2\xBB"},     {1, "\xFF", 1, "\x7F"},
 };
-void Hpux_greee_11_11ToUtf::Register(const DBConfig &config) {
-	const Hpux_greee_11_11ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                hpux_greee_11_11_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

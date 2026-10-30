@@ -1,10 +1,10 @@
-#include "generated/big5_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-big5-4.3.6.ucm
-static const map_entry_encoding big5_to_utf8[] = {
+extern const map_entry_encoding big5_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -20209,22 +20209,5 @@ static const map_entry_encoding big5_to_utf8[] = {
     {2, "\xFE\xFD", 3, "\xEE\x8C\x8F"},
     {2, "\xFE\xFE", 3, "\xEE\x8C\x90"},
 };
-
-// Aliases of "big5": the names Python accepts for its codec "big5"
-static const char *const big5_aliases[] = {"big5-tw", "big5_tw", "csbig5", "x-mac-trad-chinese", "x_mac_trad_chinese"};
-
-void Big5ToUtf::Register(const DBConfig &config) {
-	const Big5ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                big5_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : big5_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      big5_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

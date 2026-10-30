@@ -1,10 +1,10 @@
-#include "generated/ibm-954_p101-2007_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: ibm-954_P101-2007.ucm
-static const map_entry_encoding ibm_954_P101_2007_to_utf8[] = {
+extern const map_entry_encoding ibm_954_P101_2007_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -15164,12 +15164,5 @@ static const map_entry_encoding ibm_954_P101_2007_to_utf8[] = {
     {2, "\xFE\xFD", 3, "\xEE\x8E\xAA"},
     {2, "\xFE\xFE", 3, "\xEE\x8E\xAB"},
 };
-void Ibm_954_p101_2007ToUtf::Register(const DBConfig &config) {
-	const Ibm_954_p101_2007ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_954_P101_2007_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -1,10 +1,10 @@
-#include "generated/iso8859_8_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: aix-ISO8859_8-4.3.6.ucm
-static const map_entry_encoding ISO8859_8_to_utf8[] = {
+extern const map_entry_encoding ISO8859_8_to_utf8[] = {
     {1, "\x00", 1, "\x00"},     {1, "\x01", 1, "\x01"},     {1, "\x02", 1, "\x02"},         {1, "\x03", 1, "\x03"},
     {1, "\x04", 1, "\x04"},     {1, "\x05", 1, "\x05"},     {1, "\x06", 1, "\x06"},         {1, "\x07", 1, "\x07"},
     {1, "\x08", 1, "\x08"},     {1, "\x09", 1, "\x09"},     {1, "\x0A", 1, "\x0A"},         {1, "\x0B", 1, "\x0B"},
@@ -61,23 +61,5 @@ static const map_entry_encoding ISO8859_8_to_utf8[] = {
     {1, "\xF5", 2, "\xD7\xA5"}, {1, "\xF6", 2, "\xD7\xA6"}, {1, "\xF7", 2, "\xD7\xA7"},     {1, "\xF8", 2, "\xD7\xA8"},
     {1, "\xF9", 2, "\xD7\xA9"}, {1, "\xFA", 2, "\xD7\xAA"},
 };
-
-// Aliases of "ISO8859_8": the names Python accepts for its codec "iso8859_8"
-static const char *const ISO8859_8_aliases[] = {"csisolatinhebrew", "hebrew",    "iso-8859-8",      "iso-8859-8-1988",
-                                                "iso-ir-138",       "iso8859-8", "iso_8859_8_1988", "iso_ir_138"};
-
-void Iso8859_8ToUtf::Register(const DBConfig &config) {
-	const Iso8859_8ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ISO8859_8_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : ISO8859_8_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      ISO8859_8_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

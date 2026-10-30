@@ -1,10 +1,10 @@
-#include "generated/gb18030_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: gb-18030-2005.ucm
-static const map_entry_encoding gb18030_to_utf8[] = {
+extern const map_entry_encoding gb18030_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -30868,22 +30868,5 @@ static const map_entry_encoding gb18030_to_utf8[] = {
     {2, "\xFE\xFD", 3, "\xEE\x93\x84"},
     {2, "\xFE\xFE", 3, "\xEE\x93\x85"},
 };
-
-// Aliases of "gb18030": the names Python accepts for its codec "gb18030"
-static const char *const gb18030_aliases[] = {"gb18030-2000", "gb18030_2000"};
-
-void Gb18030ToUtf::Register(const DBConfig &config) {
-	const Gb18030ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                gb18030_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : gb18030_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      gb18030_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

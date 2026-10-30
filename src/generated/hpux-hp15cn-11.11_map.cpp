@@ -1,10 +1,10 @@
-#include "generated/hpux-hp15cn-11.11_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: hpux-hp15CN-11.11.ucm
-static const map_entry_encoding hpux_hp15CN_11_11_to_utf8[] = {
+extern const map_entry_encoding hpux_hp15CN_11_11_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -7580,12 +7580,5 @@ static const map_entry_encoding hpux_hp15CN_11_11_to_utf8[] = {
     {2, "\xF7\xFE", 3, "\xE9\xBD\x84"},
     {2, "\xFF\xFF", 3, "\xEF\xBF\xBD"},
 };
-void Hpux_hp15cn_11_11ToUtf::Register(const DBConfig &config) {
-	const Hpux_hp15cn_11_11ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                hpux_hp15CN_11_11_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb

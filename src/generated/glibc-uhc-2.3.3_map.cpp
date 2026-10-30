@@ -1,10 +1,10 @@
-#include "generated/glibc-uhc-2.3.3_map.hpp"
+#include "map_entry_encoding.hpp"
 
 namespace duckdb {
 namespace duckdb_encodings {
 
 // Generated from: glibc-UHC-2.3.3.ucm
-static const map_entry_encoding glibc_UHC_2_3_3_to_utf8[] = {
+extern const map_entry_encoding glibc_UHC_2_3_3_to_utf8[] = {
     {1, "\x00", 1, "\x00"},
     {1, "\x01", 1, "\x01"},
     {1, "\x02", 1, "\x02"},
@@ -17182,12 +17182,5 @@ static const map_entry_encoding glibc_UHC_2_3_3_to_utf8[] = {
     {2, "\xFD\xFD", 3, "\xE7\xBE\xB2"},
     {2, "\xFD\xFE", 3, "\xE8\xA9\xB0"},
 };
-void Glibc_uhc_2_3_3ToUtf::Register(const DBConfig &config) {
-	const Glibc_uhc_2_3_3ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                glibc_UHC_2_3_3_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-}
 } // namespace duckdb_encodings
 } // namespace duckdb
