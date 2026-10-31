@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/macos-21-10.5_map.hpp"
 
 namespace duckdb {
@@ -83,11 +84,8 @@ static const map_entry_encoding macos_21_10_5_to_utf8[] = {
     {1, "\xF9", 3, "\xE0\xB9\x99"}, {1, "\xFA", 2, "\xC2\xAE"},     {1, "\xFB", 2, "\xC2\xA9"},
 };
 void Macos_21_10_5ToUtf::Register(const DBConfig &config) {
-	const Macos_21_10_5ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                macos_21_10_5_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "macos-21-10.5", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          macos_21_10_5_to_utf8, 228);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/mac_is_map.hpp"
 
 namespace duckdb {
@@ -92,11 +93,7 @@ static const map_entry_encoding MAC_IS_to_utf8[] = {
     {1, "\xFE", 2, "\xCB\x9B"},     {1, "\xFF", 2, "\xCB\x87"},
 };
 void Mac_isToUtf::Register(const DBConfig &config) {
-	const Mac_isToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                MAC_IS_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "MAC_IS", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1, MAC_IS_to_utf8, 254);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

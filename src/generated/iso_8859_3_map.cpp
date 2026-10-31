@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/iso_8859_3_map.hpp"
 
 namespace duckdb {
@@ -70,11 +71,8 @@ static const map_entry_encoding ISO_8859_3_to_utf8[] = {
     {1, "\xFF", 2, "\xCB\x99"},
 };
 void Iso_8859_3ToUtf::Register(const DBConfig &config) {
-	const Iso_8859_3ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ISO_8859_3_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "ISO_8859_3", /*max_bytes_per_byte*/ 2, /*lookup_bytes*/ 1, ISO_8859_3_to_utf8,
+	                          249);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

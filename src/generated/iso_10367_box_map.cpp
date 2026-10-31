@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/iso_10367_box_map.hpp"
 
 namespace duckdb {
@@ -70,11 +71,8 @@ static const map_entry_encoding ISO_10367_BOX_to_utf8[] = {
     {1, "\xDB", 3, "\xE2\x96\x91"}, {1, "\xDC", 3, "\xE2\x96\x92"}, {1, "\xDD", 3, "\xE2\x96\x93"},
 };
 void Iso_10367_boxToUtf::Register(const DBConfig &config) {
-	const Iso_10367_boxToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ISO_10367_BOX_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "ISO_10367_BOX", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          ISO_10367_BOX_to_utf8, 189);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

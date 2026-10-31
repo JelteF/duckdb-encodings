@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/inis_cyrillic_map.hpp"
 
 namespace duckdb {
@@ -46,11 +47,8 @@ static const map_entry_encoding INIS_CYRILLIC_to_utf8[] = {
     {1, "\x7E", 2, "\xD0\xA7"},     {1, "\x7F", 1, "\x7F"},
 };
 void Inis_cyrillicToUtf::Register(const DBConfig &config) {
-	const Inis_cyrillicToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                INIS_CYRILLIC_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "INIS_CYRILLIC", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          INIS_CYRILLIC_to_utf8, 116);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

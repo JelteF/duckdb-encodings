@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/windows-20949-2000_map.hpp"
 
 namespace duckdb {
@@ -8399,11 +8400,8 @@ static const map_entry_encoding windows_20949_2000_to_utf8[] = {
     {1, "\xFF", 3, "\xEF\xA3\xAB"},
 };
 void Windows_20949_2000ToUtf::Register(const DBConfig &config) {
-	const Windows_20949_2000ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                windows_20949_2000_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "windows-20949-2000", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 2,
+	                          windows_20949_2000_to_utf8, 8392);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

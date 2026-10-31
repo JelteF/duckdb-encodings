@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/big5_map.hpp"
 
 namespace duckdb {
@@ -20214,17 +20215,8 @@ static const map_entry_encoding big5_to_utf8[] = {
 static const char *const big5_aliases[] = {"big5-tw", "big5_tw", "csbig5", "x-mac-trad-chinese", "x_mac_trad_chinese"};
 
 void Big5ToUtf::Register(const DBConfig &config) {
-	const Big5ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                big5_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : big5_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      big5_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
+	RegisterGeneratedEncoding(config, "big5", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 2, big5_to_utf8, 20203,
+	                          big5_aliases, 5);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

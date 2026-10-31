@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/java-cp948-1.3_p_map.hpp"
 
 namespace duckdb {
@@ -20213,11 +20214,8 @@ static const map_entry_encoding java_Cp948_1_3_P_to_utf8[] = {
     {1, "\xFE", 2, "\xC2\xA6"},
 };
 void Java_cp948_1_3_pToUtf::Register(const DBConfig &config) {
-	const Java_cp948_1_3_pToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                java_Cp948_1_3_P_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "java-Cp948-1.3_P", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 2,
+	                          java_Cp948_1_3_P_to_utf8, 20206);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

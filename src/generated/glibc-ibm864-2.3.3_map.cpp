@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/glibc-ibm864-2.3.3_map.hpp"
 
 namespace duckdb {
@@ -91,11 +92,8 @@ static const map_entry_encoding glibc_IBM864_2_3_3_to_utf8[] = {
     {1, "\xFE", 3, "\xE2\x96\xA0"},
 };
 void Glibc_ibm864_2_3_3ToUtf::Register(const DBConfig &config) {
-	const Glibc_ibm864_2_3_3ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                glibc_IBM864_2_3_3_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "glibc-IBM864-2.3.3", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          glibc_IBM864_2_3_3_to_utf8, 250);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

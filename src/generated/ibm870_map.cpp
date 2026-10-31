@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/ibm870_map.hpp"
 
 namespace duckdb {
@@ -69,11 +70,7 @@ static const map_entry_encoding IBM870_to_utf8[] = {
     {1, "\xFF", 2, "\xC2\x9F"},
 };
 void Ibm870ToUtf::Register(const DBConfig &config) {
-	const Ibm870ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                IBM870_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "IBM870", /*max_bytes_per_byte*/ 2, /*lookup_bytes*/ 1, IBM870_to_utf8, 245);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

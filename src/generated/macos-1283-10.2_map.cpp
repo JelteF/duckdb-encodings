@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/macos-1283-10.2_map.hpp"
 
 namespace duckdb {
@@ -87,11 +88,8 @@ static const map_entry_encoding macos_1283_10_2_to_utf8[] = {
     {1, "\xFD", 2, "\xCF\x8D"},     {1, "\xFE", 2, "\xCF\x8E"},
 };
 void Macos_1283_10_2ToUtf::Register(const DBConfig &config) {
-	const Macos_1283_10_2ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                macos_1283_10_2_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "macos-1283-10.2", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          macos_1283_10_2_to_utf8, 239);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

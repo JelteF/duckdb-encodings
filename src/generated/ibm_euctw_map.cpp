@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/ibm_euctw_map.hpp"
 
 namespace duckdb {
@@ -20240,11 +20241,8 @@ static const map_entry_encoding IBM_eucTW_to_utf8[] = {
     {2, "\xFD\xCB", 3, "\xE7\xB1\xB2"},
 };
 void Ibm_euctwToUtf::Register(const DBConfig &config) {
-	const Ibm_euctwToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                IBM_eucTW_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "IBM_eucTW", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 4, IBM_eucTW_to_utf8,
+	                          20233);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

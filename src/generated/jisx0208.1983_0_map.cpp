@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/jisx0208.1983_0_map.hpp"
 
 namespace duckdb {
@@ -2300,11 +2301,8 @@ static const map_entry_encoding JISX0208_1983_0_to_utf8[] = {
     {2, "\x74\x24", 3, "\xE7\x91\xA4"},
 };
 void Jisx0208_1983_0ToUtf::Register(const DBConfig &config) {
-	const Jisx0208_1983_0ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                JISX0208_1983_0_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "JISX0208.1983_0", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 2,
+	                          JISX0208_1983_0_to_utf8, 6877);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb
