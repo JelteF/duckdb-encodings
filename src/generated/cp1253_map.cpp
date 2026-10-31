@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/cp1253_map.hpp"
 
 namespace duckdb {
@@ -91,17 +92,8 @@ static const map_entry_encoding CP1253_to_utf8[] = {
 static const char *const CP1253_aliases[] = {"1253", "windows-1253", "windows_1253"};
 
 void Cp1253ToUtf::Register(const DBConfig &config) {
-	const Cp1253ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                CP1253_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : CP1253_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      CP1253_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
+	RegisterGeneratedEncoding(config, "CP1253", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1, CP1253_to_utf8, 239,
+	                          CP1253_aliases, 3);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

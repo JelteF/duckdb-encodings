@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/iso646_us_map.hpp"
 
 namespace duckdb {
@@ -39,11 +40,8 @@ static const map_entry_encoding ISO646_US_to_utf8[] = {
     {1, "\x7C", 1, "\x7C"}, {1, "\x7D", 1, "\x7D"}, {1, "\x7E", 1, "\x7E"}, {1, "\x7F", 1, "\x7F"},
 };
 void Iso646_usToUtf::Register(const DBConfig &config) {
-	const Iso646_usToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ISO646_US_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "ISO646_US", /*max_bytes_per_byte*/ 1, /*lookup_bytes*/ 1, ISO646_US_to_utf8,
+	                          128);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

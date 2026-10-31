@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/windows-20932-2000_map.hpp"
 
 namespace duckdb {
@@ -15188,11 +15189,8 @@ static const map_entry_encoding windows_20932_2000_to_utf8[] = {
     {2, "\xFE\xFE", 3, "\xEE\x8E\xAB"},
 };
 void Windows_20932_2000ToUtf::Register(const DBConfig &config) {
-	const Windows_20932_2000ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                windows_20932_2000_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "windows-20932-2000", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 2,
+	                          windows_20932_2000_to_utf8, 15181);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/cp273_map.hpp"
 
 namespace duckdb {
@@ -75,17 +76,8 @@ static const map_entry_encoding cp273_to_utf8[] = {
 static const char *const cp273_aliases[] = {"273", "csibm273", "ibm273"};
 
 void Cp273ToUtf::Register(const DBConfig &config) {
-	const Cp273ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                cp273_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : cp273_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      cp273_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
+	RegisterGeneratedEncoding(config, "cp273", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1, cp273_to_utf8, 256,
+	                          cp273_aliases, 3);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

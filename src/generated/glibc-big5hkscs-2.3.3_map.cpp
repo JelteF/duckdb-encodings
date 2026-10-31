@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/glibc-big5hkscs-2.3.3_map.hpp"
 
 namespace duckdb {
@@ -18292,11 +18293,8 @@ static const map_entry_encoding glibc_BIG5HKSCS_2_3_3_to_utf8[] = {
     {2, "\xFE\xFE", 3, "\xE7\xA7\x94"},
 };
 void Glibc_big5hkscs_2_3_3ToUtf::Register(const DBConfig &config) {
-	const Glibc_big5hkscs_2_3_3ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                glibc_BIG5HKSCS_2_3_3_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "glibc-BIG5HKSCS-2.3.3", /*max_bytes_per_byte*/ 4, /*lookup_bytes*/ 2,
+	                          glibc_BIG5HKSCS_2_3_3_to_utf8, 18285);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

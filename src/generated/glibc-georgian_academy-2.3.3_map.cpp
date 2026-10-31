@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/glibc-georgian_academy-2.3.3_map.hpp"
 
 namespace duckdb {
@@ -93,11 +94,8 @@ static const map_entry_encoding glibc_GEORGIAN_ACADEMY_2_3_3_to_utf8[] = {
     {1, "\xFF", 2, "\xC3\xBF"},
 };
 void Glibc_georgian_academy_2_3_3ToUtf::Register(const DBConfig &config) {
-	const Glibc_georgian_academy_2_3_3ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                glibc_GEORGIAN_ACADEMY_2_3_3_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "glibc-GEORGIAN_ACADEMY-2.3.3", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          glibc_GEORGIAN_ACADEMY_2_3_3_to_utf8, 256);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

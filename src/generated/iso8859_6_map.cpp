@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/iso8859_6_map.hpp"
 
 namespace duckdb {
@@ -66,17 +67,8 @@ static const char *const ISO8859_6_aliases[] = {"arabic",     "asmo-708",  "asmo
                                                 "iso-ir-127", "iso8859-6", "iso_8859_6_1987", "iso_ir_127"};
 
 void Iso8859_6ToUtf::Register(const DBConfig &config) {
-	const Iso8859_6ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ISO8859_6_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
-	for (const auto *alias : ISO8859_6_aliases) {
-		const EncodingFunction alias_function(alias, GeneratedEncodedFunction::Decode,
-		                                      generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-		                                      ISO8859_6_to_utf8, generated_function.size);
-		config.RegisterEncodeFunction(alias_function);
-	}
+	RegisterGeneratedEncoding(config, "ISO8859_6", /*max_bytes_per_byte*/ 2, /*lookup_bytes*/ 1, ISO8859_6_to_utf8, 211,
+	                          ISO8859_6_aliases, 12);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

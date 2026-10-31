@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/ibm-5353_p100-1998_map.hpp"
 
 namespace duckdb {
@@ -91,11 +92,8 @@ static const map_entry_encoding ibm_5353_P100_1998_to_utf8[] = {
     {1, "\xFC", 2, "\xC3\xBC"},     {1, "\xFD", 2, "\xC5\xBC"},     {1, "\xFE", 2, "\xC5\xBE"},
 };
 void Ibm_5353_p100_1998ToUtf::Register(const DBConfig &config) {
-	const Ibm_5353_p100_1998ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_5353_P100_1998_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "ibm-5353_P100-1998", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 1,
+	                          ibm_5353_P100_1998_to_utf8, 252);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

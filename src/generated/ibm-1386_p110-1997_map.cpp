@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/ibm-1386_p110-1997_map.hpp"
 
 namespace duckdb {
@@ -23915,11 +23916,8 @@ static const map_entry_encoding ibm_1386_P110_1997_to_utf8[] = {
     {2, "\xFE\xFE", 3, "\xEE\x93\x85"},
 };
 void Ibm_1386_p110_1997ToUtf::Register(const DBConfig &config) {
-	const Ibm_1386_p110_1997ToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                ibm_1386_P110_1997_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "ibm-1386_P110-1997", /*max_bytes_per_byte*/ 3, /*lookup_bytes*/ 2,
+	                          ibm_1386_P110_1997_to_utf8, 23908);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb

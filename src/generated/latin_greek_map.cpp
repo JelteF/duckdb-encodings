@@ -1,3 +1,4 @@
+#include "map_entry_encoding.hpp"
 #include "generated/latin_greek_map.hpp"
 
 namespace duckdb {
@@ -39,11 +40,8 @@ static const map_entry_encoding LATIN_GREEK_to_utf8[] = {
     {1, "\x7D", 1, "\x7D"},     {1, "\x7E", 2, "\xC2\xA8"}, {1, "\x7F", 1, "\x7F"},
 };
 void Latin_greekToUtf::Register(const DBConfig &config) {
-	const Latin_greekToUtf generated_function;
-	const EncodingFunction function(generated_function.name, GeneratedEncodedFunction::Decode,
-	                                generated_function.max_bytes_per_byte, generated_function.lookup_bytes,
-	                                LATIN_GREEK_to_utf8, generated_function.size);
-	config.RegisterEncodeFunction(function);
+	RegisterGeneratedEncoding(config, "LATIN_GREEK", /*max_bytes_per_byte*/ 2, /*lookup_bytes*/ 1, LATIN_GREEK_to_utf8,
+	                          127);
 }
 } // namespace duckdb_encodings
 } // namespace duckdb
